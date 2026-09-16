@@ -1,0 +1,611 @@
+/* ==========================================================================
+   HourGlass Authentication Stylesheet
+   Approved Palette:
+   - Deep Navy: #111844
+   - Light Blue: #ABD2FA
+   - Purple Accent: #DC95FF
+   - Gold Accent: #FFAA00
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #111844;
+    background: radial-gradient(circle at 50% 30%, #1a235a 0%, #111844 80%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+    padding: 20px;
+}
+
+/* Auth Main Container */
+.auth-container {
+    background-color: rgba(17, 24, 68, 0.85);
+    border: 1px solid rgba(171, 210, 250, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(220, 149, 255, 0.12);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    width: 850px;
+    max-width: 100%;
+    min-height: 550px;
+    backdrop-filter: blur(10px);
+}
+
+/* Form Container Layouts */
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.form-container form {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 45px;
+    height: 100%;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ABD2FA;
+    margin-bottom: 6px;
+}
+
+.form-container .subtitle {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 22px;
+}
+
+/* Login Container Position */
+.login-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.auth-container.register-mode .login-container,
+.auth-container.right-panel-active .login-container {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Register Container Position */
+.register-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.auth-container.register-mode .register-container,
+.auth-container.right-panel-active .register-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: showPanel 0.6s;
+}
+
+@keyframes showPanel {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Form Input Controls */
+.input-group {
+    width: 100%;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ABD2FA;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(171, 210, 250, 0.25);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.input-group input:focus {
+    border-color: #DC95FF;
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 8px rgba(220, 149, 255, 0.3);
+}
+
+/* Action Buttons */
+.btn {
+    border-radius: 8px;
+    border: none;
+    padding: 12px 28px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #DC95FF 0%, #ABD2FA 100%);
+    color: #111844;
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: 0 4px 15px rgba(220, 149, 255, 0.25);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ABD2FA 0%, #DC95FF 100%);
+    box-shadow: 0 6px 20px rgba(171, 210, 250, 0.35);
+}
+
+/* Toggle Link Styling */
+.toggle-text {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-text a {
+    color: #FFAA00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.toggle-text a:hover {
+    color: #ABD2FA;
+    text-decoration: underline;
+}
+
+/* Alert Notification Banners */
+.alert {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.825rem;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: rgba(171, 210, 250, 0.15);
+    border: 1px solid #ABD2FA;
+    color: #ABD2FA;
+}
+
+.alert-danger {
+    background-color: rgba(255, 170, 0, 0.15);
+    border: 1px solid #FFAA00;
+    color: #FFAA00;
+}
+
+/* Spatial Overlay Panel */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.auth-container.register-mode .overlay-container,
+.auth-container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: linear-gradient(135deg, #111844 0%, #1d275e 50%, #111844 100%);
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+    border-left: 1px solid rgba(171, 210, 250, 0.15);
+    border-right: 1px solid rgba(171, 210, 250, 0.15);
+}
+
+.auth-container.register-mode .overlay,
+.auth-container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.auth-container.register-mode .overlay-left,
+.auth-container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.auth-container.register-mode .overlay-right,
+.auth-container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* HourGlass Brand Visual Container */
+.hourglass-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hourglass-visual h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ABD2FA 0%, #DC95FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hourglass-visual p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 260px;
+}
+
+/* ==========================================================================
+   PREMIUM CSS-ONLY 3D ANIMATED HOURGLASS COMPONENT
+   ========================================================================== */
+
+/* Outer Perspective Container with Floating Motion */
+.hourglass-3d {
+    width: 140px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    perspective: 800px;
+    margin-bottom: 20px;
+    animation: hourglassFloat 6s ease-in-out infinite alternate;
+}
+
+/* Inner Frame Container with 3D Tilt Motion */
+.hourglass-frame {
+    width: 120px;
+    height: 180px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+    animation: hourglassTilt 8s ease-in-out infinite alternate;
+}
+
+/* Frame Side Support Pillars */
+.hourglass-frame::before,
+.hourglass-frame::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    width: 6px;
+    background: linear-gradient(180deg, #FFAA00 0%, #ABD2FA 30%, #111844 50%, #ABD2FA 70%, #FFAA00 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5), 0 0 4px rgba(255, 170, 0, 0.3);
+    z-index: 10;
+}
+
+.hourglass-frame::before {
+    left: 8px;
+}
+
+.hourglass-frame::after {
+    right: 8px;
+}
+
+/* Metallic Top and Bottom Frame Caps */
+.hourglass-top,
+.hourglass-bottom {
+    width: 110px;
+    height: 12px;
+    background: linear-gradient(90deg, #111844 0%, #FFAA00 25%, #ABD2FA 50%, #FFAA00 75%, #111844 100%);
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 170, 0, 0.3);
+    position: relative;
+    z-index: 12;
+}
+
+.hourglass-top::after,
+.hourglass-bottom::after {
+    content: '';
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 1px;
+}
+
+.hourglass-top::after {
+    top: 2px;
+}
+
+.hourglass-bottom::after {
+    bottom: 2px;
+}
+
+/* Glass Vessel Body */
+.hourglass-glass {
+    width: 90px;
+    height: 154px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+}
+
+/* Upper & Lower Glass Chambers (Trapezoidal Funnels) */
+.sand-chamber {
+    width: 90px;
+    height: 70px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(171, 210, 250, 0.25) 0%, rgba(220, 149, 255, 0.1) 50%, rgba(171, 210, 250, 0.2) 100%);
+    filter: drop-shadow(0 0 4px rgba(171, 210, 250, 0.4));
+}
+
+/* Glass Edge Outline for Chambers */
+.sand-chamber::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid rgba(171, 210, 250, 0.6);
+    pointer-events: none;
+    z-index: 6;
+}
+
+/* Upper Chamber Funnel Silhouette */
+.sand-chamber.sand-top {
+    clip-path: polygon(0% 0%, 100% 0%, 58% 100%, 42% 100%);
+}
+
+/* Lower Chamber Funnel Silhouette */
+.sand-chamber.sand-bottom {
+    clip-path: polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%);
+}
+
+/* Moving Diagonal Glass Reflection */
+.glass-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 8;
+    background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.25) 48%, rgba(171, 210, 250, 0.35) 52%, transparent 65%);
+    animation: glassShine 6s ease-in-out infinite alternate;
+}
+
+/* Central Narrow Neck Sand Stream */
+.sand-stream {
+    width: 4px;
+    height: 14px;
+    background: linear-gradient(180deg, #FFAA00 0%, #DC95FF 100%);
+    box-shadow: 0 0 8px #FFAA00, 0 0 4px #FFAA00;
+    z-index: 7;
+    margin: -1px 0;
+    animation: flowStream 0.8s ease-in-out infinite alternate;
+}
+
+/* Top Chamber Draining Sand */
+.sand-top .sand {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #FFAA00 0%, rgba(255, 170, 0, 0.85) 100%);
+    box-shadow: 0 0 10px #FFAA00;
+    animation: drainSand 9s ease-in-out infinite;
+}
+
+/* Bottom Chamber Accumulating Sand */
+.sand-bottom .sand {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(0deg, #FFAA00 0%, rgba(255, 170, 0, 0.85) 80%, rgba(220, 149, 255, 0.4) 100%);
+    box-shadow: 0 0 12px #FFAA00;
+    animation: accumulateSand 9s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   HOURGLASS KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+/* 1. Gentle Vertical Floating on Outer Container */
+@keyframes hourglassFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 2. Independent 3D Tilt Motion on Inner Frame */
+@keyframes hourglassTilt {
+    0% {
+        transform: rotateX(5deg) rotateY(-6deg) rotateZ(-1deg);
+    }
+    50% {
+        transform: rotateX(-4deg) rotateY(6deg) rotateZ(1deg);
+    }
+    100% {
+        transform: rotateX(6deg) rotateY(-5deg) rotateZ(-1deg);
+    }
+}
+
+/* 3. Upper Sand Depletion Cycle */
+@keyframes drainSand {
+    0% {
+        height: 100%;
+    }
+    42% {
+        height: 10%;
+    }
+    50% {
+        height: 0%;
+    }
+    55% {
+        height: 0%;
+    }
+    92% {
+        height: 100%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+/* 4. Lower Sand Accumulation Cycle */
+@keyframes accumulateSand {
+    0% {
+        height: 0%;
+    }
+    42% {
+        height: 90%;
+    }
+    50% {
+        height: 100%;
+    }
+    55% {
+        height: 100%;
+    }
+    92% {
+        height: 0%;
+    }
+    100% {
+        height: 0%;
+    }
+}
+
+/* 5. Central Sand Stream Pulsing */
+@keyframes flowStream {
+    0% {
+        opacity: 0.6;
+        transform: scaleX(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1.2);
+    }
+}
+
+/* 6. Moving Glass Highlight Sheen */
+@keyframes glassShine {
+    0% {
+        transform: translateX(-30px);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(30px);
+        opacity: 0.8;
+    }
+}
+
+/* Responsive Viewports */
+@media (max-width: 768px) {
+    .auth-container {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .login-container,
+    .register-container {
+        position: relative;
+        width: 100%;
+        opacity: 1;
+        transform: none !important;
+    }
+
+    .auth-container.register-mode .login-container,
+    .auth-container:not(.register-mode) .register-container {
+        display: none;
+    }
+
+    .overlay-container {
+        display: none;
+    }
+
+    .form-container form {
+        padding: 35px 20px;
+    }
+}
